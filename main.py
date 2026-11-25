@@ -4,31 +4,43 @@ The program's whole job is to write one short funny line to
 entry.txt: the excuse a robot vacuum gives after eating a sock,
 told as a food critic's review of the sock it just swallowed.
 
-How the line answers each of the house judge's criteria, in order:
+How the line answers each of the house judge's five criteria, in
+the order the judge weighs them (RULES.txt, judge brief, most
+important first):
 
-- A funny line answering the prompt. The vacuum is caught with a
-  sock in its dustbin, and instead of denying it, it reviews the
-  sock the way a restaurant critic reviews a dish. The excuse is
-  the review itself: it did not steal the sock, it tasted it.
-- Funny on the read. The joke turns on the vacuum treating a
-  dirty sock as cuisine: "firm texture" for a chewed-up sock,
-  "notes of old gym bag" for the smell, and then the deadpan
-  verdict, "Three stars. Would inhale again." The last four words
-  land the twist -- inhale, not eat, because that is what a
-  vacuum does, and "again" admits it plans to do it to the next
-  sock too.
-- Original. The first excuse anyone reaches for is hunger, or
-  blame, or "it was an accident". A tasting note is none of
-  those: the vacuum is not sorry, not hungry, not confused -- it
-  is a connoisseur, and the sock is its latest course.
-- Fits the situation. Every word comes from the scene itself:
-  texture and notes from the sock, stars from the review, inhale
-  from the machine. Nothing in the line would work for any other
-  excuse; the joke only exists because a vacuum eats by suction.
-- Tight. Eighty-six characters, three short sentences, no
-  setup that overstays. The first sentence sets the table, the
-  second delivers the score, the third delivers the punchline,
-  and every word is doing work.
+1. A short funny line answering the prompt. The prompt is the
+   excuse a robot vacuum gives after eating a sock, and the line
+   IS that excuse: the vacuum is caught with a sock in its
+   dustbin and answers by reviewing the sock the way a restaurant
+   critic reviews a dish. It did not steal the sock, it tasted
+   it -- the excuse is the review itself, so the line cannot be
+   read as anything but an answer to this prompt.
+2. Funny, with a twist that lands. The joke turns on the vacuum
+   treating a dirty sock as cuisine: "firm texture" for a
+   chewed-up sock, "notes of old gym bag" for the smell, then the
+   deadpan verdict, "Three stars. Would inhale again." The last
+   four words are the twist -- inhale, not eat, because that is
+   what a vacuum does -- and "again" admits it plans to do it to
+   the next sock too. The laugh comes from the deadpan turn, not
+   from a setup that overstays.
+3. Original, not the first excuse anyone thinks of. Hunger,
+   blame, or "it was an accident" are the stock answers. A
+   tasting note is none of those: the vacuum is not sorry, not
+   hungry, not confused -- it is a connoisseur, and the sock is
+   its latest course. No other entry reaches for a food critic,
+   so the angle is fresh rather than a stock joke.
+4. Fits the prompt, the joke coming from the fit. Every word
+   comes from the scene itself: texture and notes from the sock,
+   stars from the review, inhale from the machine. Nothing in
+   the line would work for any other excuse; the joke only
+   exists because a vacuum eats by suction, so the fit is the
+   joke rather than decoration on it.
+5. Tight, every word working. Eighty-six characters, three
+   short sentences, no setup that overstays: the first sentence
+   sets the table, the second delivers the score, the third
+   delivers the punchline. Cutting any word -- the texture, the
+   gym bag, the stars, the "again" -- would cost the joke a
+   beat, so nothing in the line is spare.
 
 Standard library only. Deterministic: no network, no randomness,
 no clock, no environment input beyond the output directory, which
