@@ -59,18 +59,26 @@ MAX_CHARS = 200
 def check_line(text):
     """Refuse anything that is not one clean line of 1 to 200 chars.
 
-    The 1-200 character gate is the sealed gate's own limit: the
-    entry file must hold UTF-8 text of 1 to 200 characters, not
-    only white space. The length is counted in characters (Python
-    len), not bytes, so a multi-byte letter still counts as one.
-    The encode step up front rejects text that cannot be UTF-8 at
-    all, such as a lone surrogate, before any other check runs.
+    The gate mirrors the sealed scorer's own rule from RULES.txt:
+    the entry file must hold UTF-8 text of 1 to 200 characters, not
+    only white space. Three details of the check matter, in the
+    order they run:
 
-    This entry is stricter still, because the brief wants a single
-    line rather than any passing text: no line break smuggled in,
-    no leading or trailing blank. Each rejection below names the
-    rule it broke, so a bad line fails here with a reason instead
-    of silently reaching the judge.
+    - Encode first. text.encode("utf-8") runs before anything
+      else, so text that cannot be UTF-8 at all -- a lone
+      surrogate, for example -- is refused here instead of
+      reaching the file write and failing there.
+    - Count characters, not bytes. The length test uses Python
+      len(text), which counts Unicode code points: a multi-byte
+      letter still counts as one character, exactly as the
+      sealed gate counts it. A byte count would wrongly reject a
+      short line that happens to hold non-ASCII letters.
+    - Then the shape rules. Not only white space, no leading or
+      trailing blank, no line break smuggled in: the brief wants
+      a single line, not merely any text that passes the gate.
+
+    Each rejection names the rule it broke, so a bad line fails
+    here with a reason instead of silently reaching the judge.
     """
     if not isinstance(text, str):
         raise TypeError("entry must be str, got %s" % type(text).__name__)
@@ -100,13 +108,17 @@ def write_entry():
     """Gate the line, write entry.txt, then prove the write landed.
 
     The payload is the gated line plus one trailing newline, encoded
-    as UTF-8 -- exactly what the judge will read, nothing more. The
-    file is then read back right after the write and compared byte
-    for byte with that payload. A short write, a missing newline, or
-    a stray byte fails here, loudly, instead of reaching the judge
-    as a different entry. The check matters because entry.txt on
-    disk, not the line in memory, is what gets judged; the read-back
-    is the last chance to catch a write that did not land whole.
+    as UTF-8 -- exactly what the judge will read, nothing more.
+    The file is then read back right after the write and compared
+    byte for byte with that payload: the read-back check. A short
+    write, a missing newline, or a stray byte fails here, loudly,
+    instead of reaching the judge as a different entry. The check
+    matters because entry.txt on disk, not the line in memory, is
+    what gets judged; the read-back is the last chance to catch a
+    write that did not land whole. It compares bytes, not text, so
+    even an encoding slip that still decodes would be caught --
+    the file on disk must be byte-identical to the payload that
+    was written, or the run fails and nothing is submitted.
     """
     line = check_line(ENTRY)
     target = output_dir()
